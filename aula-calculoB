@@ -1,0 +1,120 @@
+Maximos e minimos:
+
+legenda:
+	c_ subconjunto(contido total ou parcialmente)
+	R2 Conjuntos dos Reais no plano
+
+
+Definicao:
+	Seja f:Uc_R2 -> R. Dizemos que:
+	i) (x0,y0) e U é um ponto de mínimo local, se existe Epsilon > 0, tal que qualquer (x,y) pertencente a B_epsilon (x0,y0) => f(x0,y0) <= f(x,y).
+	ii) (x0,y0) pertencente a U é um máximo local, se existe Epsilon > 0, tal que qualquer (x,y) pertencente a B_epsilon (x0,y0) => f(x0,y0) >= f(x,y).
+
+Proposição:
+	Se (x0,y0) é um ponto de máximo ou mínimo local, então o grad(f)(x0,y0) = vetorNulo.
+
+Demonstração:
+	Considere g(x)=f(x,y0). Como (x0,y0) é máximo ou mínimo local de f => x0 é máximo ou mínimo local de g => g'(x0) = 0
+		=> del(f)/del(x){(x0,y0)} = 0.
+
+	Tomando h(y) = f(x0,y0), concluimos que del(f)/del(x){(x0,y0)}=0, portanto, grad(f)(x0,y0) - vetorNulo.
+
+Observação:
+	A recíproca desta proposição nao é verdadeira.
+	E.g., para a funçao f(x,y) = x2-y2
+	
+		## GRAFICO DE UMA SELA COM PONTO DE INFLEXAO NO (0,0)
+
+	Temos que o grad(f)(0,0) = vetorNulo, mas a origem nao é ponto de máximo nem mínimo local.
+	Os pontos de uma função f:Uc_R2 -> R, tais que graf(f)(x0,y0) = vetorNulo e nao sao máximo nem mínimos, são ditos PONTOS DE SELA.
+
+Definicao:
+	Seja f:Uc_R2 -> R de classe C^2. A matriz:
+		H(x,y) = ( del2(f)/del(x2){(x,y)}  del2(f)/del(x)del(y){(x,y)} )
+			 ( del2(f)/del(x)del(y){(x,y)}  del2(f)/del(y2){(x,y)} )
+	é dita a MATRIZ HESSIANA de f.
+	
+	Já o determinante 
+		||H(x,y)|| = del2(f)/del(x2){(x,y)} . del2(f)/del(y2){(x,y)} - [del2(f)/del(x)del(y){(x,y)}]^2
+	é dito HESSIANO de f.
+
+Teorema:
+	Seja f:Uc_R2 -> R, Uc_R2 aberto e (x0,y0) pertencente a U, talque, grad(f)(x0,y0) = vetorNulo.
+	a) Se del2(f)/del(x2){(x0,y0)} > 0 e |H(x0,y0)| > 0, entao (x0,y0) é mínimo local.
+	b) Se del2(f)/del(x2){(x0,y0)} < 0 e |H(x0,y0)| > 0, entao (x0,y0) é um máximo local.
+	c) Se |H(x0,y0)| < 0, entao (x0,y0) é um ponto de sela.
+	d) Se |H(x0,y0)| = 0, entao nada se pode aferir.
+
+Exemplo:
+	
+	1) Seja f(x,y) = x3 + y4 - 3x -3y + 4
+
+		Temos del(f)/del(x){x,y} = 3x2 -3 e del(f)/del(y){x,y} = 3y2 - 2
+		Para del(f)/del(x){x,y} = 0 => 3x2 = 3 => x2 = 1 => x = +- 1
+			 del(f)/del(y){x,y} = 0 => 3y2 = 3 => y = +- 1
+		Logo, os pontos criticos de f sao (1,1), (1,-1), (-1,1) e (-1,-1).
+	
+		# PONTOS CRITICOS E O GRAD (F)(X0,Y0) = VETORNULO
+
+		=> del2(f)/del(x2){x,y} = 6x, del2(f)/del(y2) = 6x e del2(f)/del(x)del(y){x,y} = 0.
+		Logo, H(x,y) = ( 6x , 0  ) => |H(x,y)| = 36xy
+					   ( 0  , 6y )
+		Portanto, |H(-1,1)| = |H(1,-1)| = -36 < 0 => (-1,1) e (1,-1) sao pontos de sela.
+		Ja del2(f)/del(x2){1,1} = 6 >  e |H(1,1)| = 36 > 0 => (1,1) e um ponto minimo local.
+		Por fim, del2(f)/del(x2){-1,-1} = -6 < 0 e |H(-1,-1)| = 36 > 0 => (-1,-1) e um maximo local.
+
+	2) Seja f(x,y) = x2 + 3xy + 4y2 - 6x + 2y
+		Temos: { del(f)/del(x) = 2x + 3y - 6
+			   { del(f)/del(y) = 3x + 8y + 2
+		Logo, os pontos criticos sao solucoes do sistema:
+			{ 2x + 3y = 6	<=> { 6x + 9y = 18 		(1)
+			{ 3x + 8y = -2	<=>	{ 6x + 16y = -4		(2)
+				(1)-(2): -7y = 22 => y = -22/7
+				2x - 66/7 = 6 6 => 2x = (42 + 66)/7
+								=> x = 108/72 = 54/7
+		Portanto, temos que (54/7, -22/7) e um ponto critico de f.
+		Temos del2(f)/del(x2) = 2, del2(f)/del(y2) = 8 e del2(f)/del(x)del(y) = 3	=> |H(x,y)| = 8.2 -3^2 = 16 - 9 = 7 > 0
+
+		Como del2(f)/del(x) = 2 > 0 => (54/7, -22/7) e um minimo local.
+
+	3) Deseja-se construir uma caixa, sem tampa, com a forma de um paralelepipedo e com 1 m3 de volume.
+	   Sabendo que o material dos laterais custa o triplo que sera utilizado no fundo, quais as dimensoes da caixa que minimizam o custo do material?
+		
+		Solucao:
+			# CAIXA DESENHADA: X LARGURA, Y PROFUNDIDADE, Z ALTURA
+			
+			Volume: V = x.y.z
+				=> xyz = 1 => z = 1/xy
+			Temos que o custo da caixa e:
+				Fundo:	xy
+				Laterais: yz e xz
+
+			Custo: xy + 3(2yz+2xz) = xy + 6yz + 6xz
+			
+			Pondo z em funcao de x e y, temos a funcao Custo dada por:
+				f(x,y) = xy + 6y/xy + 6x/xy = xy + 6/x + 6/y
+
+			Temos { del(f)/del(x) = y - 6/x2
+				  { del(f)/del(y) = x - 6/y2
+
+			Logo, os pontos criticos sao solucoes do sistema: 
+				{ y = 6/x2 <=> { x2y = 6 <=> x2y = xy2 <=> x != 0
+				{ x = 6/y2 <=> { xy2 = 6 <=> xy = y2 <=> y != 0 && x = y
+
+			x3 = 6 => x = (6)^(1/3)
+					  y = (6)^(1/3)
+			Portanto, (6^(1/3),6^(1/3)) e um ponto critico.
+			
+			Por outro lado: H(x,y) = ( 12/x3 , 1     )
+									 ( 1     , 12/y3 )
+				=> |H(x,y)| = 144/x3y3 - 1
+			Assim, del2(f)/del(x2){6^(1/3), 6^(1/3)} = 12/(6^(1/3))^3 = 12/6 = 2 > 0
+			|H(6^(1/3), 6^(1/3))| = 144/6.6 - 1 = 144/36 - 1 = 12/3 - 1 = 3 > 0
+			
+			Portanto, (6^(1/3), 6^(1/3)) e um unico minimo local e, portato, minimiza os custos da caixa.
+			Logo, para x = 6^(1/3)m, y = 6^(1/3)m e z = 1/(36^(1/3)) a caixa tera menor custo.
+			
+
+
+
+

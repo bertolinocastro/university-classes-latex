@@ -1,0 +1,110 @@
+O metodo dos MULITPLICADORES de LAGRANGE
+
+	Seja f:R2 -> R diferenciável e g(x,y) = 0 uma curva diferenciável definida implicitamente.
+	Considerando f|g (f restrita à curva g) vamos verificar quais condições para obter pontos de máximos e mínimos.
+
+	## GRAFICO DE UMA CURVA G(X,Y) NO PLANO XY, UMA SUPERFÍCIE QUALQUER NO ESPAÇO. A PROJEÇÃO DA CURVA NESSE PLANO, GERA UMA OUTRA CURVA QUE PODE-SE CALCULAR O MAXIMO E MÍNIMO.
+
+Teorema: (Multiplicadores de Lagrange)
+
+	Seja f:R2 -> R diferenciável uiyjhe g(x,y) = 0 uma curva diferenciável e B = {(x,y) pertencente a R2; g(x,y) = 0 }. Então o ponto (x0,y0) pertencente a B é um ponto crítico de f, se existe \lambda (letra grega) pertencente a R tal que:
+		grad(f) (x0,y0) = \lambda . grad(g) (x0,y0)
+
+Demonstração:
+	Seja \gama : (a,b) -> R2 que parametriza g, i.e., g(\gama(t)) = 0, para qualquer t pertencente a (a,b). Para \gama (t0) = (x0,y0) teremos
+		[g(\gama (t0))]' = grad (g)(\gama(t0)) \prodEscalar \gama'(t0)
+						 = grad (g)(x0,y0) \prodEscalar \gama'(t0) = 0     (1)
+
+	Por outro lado, tome F(t) = f(\gama(t)), como \gama(t0) = (x0,y0) é ponto crítico de f => F'(t0) = 0.
+	Mas F'(t0) = grad (f) (\gama(t0)) \prodEscalar \gama'(t0) = 0
+		,portanto, grad(f)(x0,y0) \prodEscalar \gama'(t0) = 0 			   (2)
+
+
+	Temos que (1): \gama'(t0) \perpendicular grad(g)(x0,y0)
+			  (2): \gama'(t0) \perpendicular grad(f)(x0,y0)
+
+	Como a dimensão de R2 é 2 => grad(f)(x0,y0) \paralelo grad(x0,y0), i.e., existe \lambda pertencente a R tal que grad(f)(x0,y0) = \lambda . grad(g)(x0,y0)
+
+Observação:
+	Para estudar os pontos críticos de f restritos a g, buscamos as soluções do sistema (em geral nao linear):
+		{ grad(f)(x,y) = \lambda . grad(g)(x,y)
+		{ g(x,y) = 0
+	cujos quais serão candidatos a máximos e mínimos.
+
+Exemplo:
+	1) Seja f(x,y) = 3x + 2y. Determine os pontos críticos restritos à x2 + y2 = 1.
+	Sol.:
+		Temos grad(f)(x,y) = (3,2) e g(x,y) = x2 + y2 - 1
+		Logo, os pontos crítios serão solução do sistema:
+			{ grad(f)(x,y) = \lambda . grad(g)(x,y)
+			{ g(x,y) = 0
+		<=> { (3,2) = \lambda . (2x,2y)
+		<=>	{ x2 + y2 = 1
+
+			{ 2x\lambda = 3 						(1)
+			{ 2y\lambda = 2  						(2)
+			{ x2 + y2 = 1							(3)
+
+		Fazendo (1)/(2) : 2x\lambda / 2y\lambda = 3/2
+			=> x / y = 3/2
+			=> 2x = 3y
+			=> x = 3y/2
+	
+		Substituindo em (3):
+			9y2/4 + y2  = 1 <=> (9y2 + 4y2)/4 = 1
+				<=> 13y2 = 4 => y2 = 4/13
+				 => y = +- 2/sqrt(13)
+
+		Logo, y1 = 2/sqrt(13) => x1 = 3/2 . 2/sqrt(13) = 3/sqrt(13)
+			  y2 = -2/sqrt(13) => x2 = -3/sqrt(13)
+
+		Portanto, os pontos críticos são P1 = (3/sqrt(13), 2/sqrt(13)) e P2 = (-P1).
+	
+		Como f(P1) > 0 e f(P2) < 0 => f(x2, y2) < f(x1, y1)
+		Portanto, P1 é ponto de máximo de P2 é ponto de mínimo.
+
+	2) Determine a reta tangente à elipse x2 + y2/4 = 1 que forma com os eixos no 1º quadrante um triângulo com área mínima.
+	
+	Solução: Dada g(x,y) = x2 + y2/4 - 1, temos grad(g)(x,y) = (2x, y/2). Logo a reta tangente à elipse no ponto (a,b) tem equação:
+		(2a, b/2) . [(x,y) - (a,b)] = 0
+		(2a, b/2) . (x-a, y-b) = 0
+		2ax - 2a2 + yb/2 - b2/2 = 0
+		<=> 2ax + yb/2 - 2a2 -b2/2 = 0
+		<=> ax + yb/4 - a2 - b2/4 = 0
+		<=> ax + yb/4 = 1 <================= RETA TANGENTE
+	
+		Temos que o triângulo determinado pela reta tangente, tem base 1/a e altura 4/b. Logo a sua área é: 2/ab.
+		Logo, temos que encontrar um mínimo para A(a,b) = 2/ab restrito à elipse x2 + y2/4 = 1.	Temos o grad(A)(a,b) = (-2/ba2, -2/ab2) e o grad(g)(2x, y/2).
+		Logo temos de resolver o sistema:
+			{ grad(A)(a,b) = \lambda . grad(g)(a,b)
+			{ a2 + b2/4 = 1
+	
+			<=> { (-2/ba2, -2/ab2) = \lambda (2a,b/2)
+			<=> { a2 + b2/4 = 1
+			
+
+			<=> { 2a\lambda = -2/ba2  => \lambda = -1 / ba3
+			<=> { b\lambda/2 = -2/ab2 => \lambda = -4 / ab3
+			<=>	{ a2 + b2/4 = 1
+	
+			===> -4/ab3 = -1/ba3 => 4ba3 = ab3 ( a!=0, b!=0 )
+			=> 4a2 = b2
+
+			=> a2 + 4a2/4 = 1 => 2a2 = 1 => a2 = 1/2 => a = +- sqrt(2)/2
+
+		Como (a,b) pertencente ao 1º quadrante => a = sqrt(2)/2
+			=> b2 = 4/2 = 2 => b / sqrt(2)
+
+		Logo a reta tangente que minimiza a área é:
+			sqrt(2).x/2 + sqrt(2).y/4 = 1
+
+		
+
+
+
+
+
+
+
+
+
